@@ -1,0 +1,128 @@
+# Part 1 :
+
+with open("input.txt", "r") as f:
+    l = list(map(lambda x: (x[0], int(x[2:])), f.readlines()))
+
+placeh = [0, 0]
+place1 = [0, 0]
+
+all_moves = [[0, 0]]
+
+
+def refactor(l):
+    m = []
+    for x in l:
+        for _ in range(x[1]):
+            m.append(x[0])
+    return m
+
+list_moves_H = refactor(l)
+
+
+def moving_normal(move, dot):
+    dot[1] += int(move == "U") - int(move == "D")
+    dot[0] += int(move == "R") - int(move == "L")
+
+
+def test(h, t):
+    return h[0] - 1 <= t[0] <= h[0] + 1 and h[1] - 1 <= t[1] <= h[1] + 1
+
+
+def maj(h, t):
+    ex = t[:]
+    if not test(h, t):
+        if h[0] == t[0]:
+            if h[1] > t[1]:
+                ex[1] += 1
+            else:
+                ex[1] -= 1
+        elif h[1] == t[1]:
+            if h[0] > t[0]:
+                ex[0] += 1
+            else:
+                ex[0] -= 1
+        else:
+            ex[0] += int(h[0] > t[0]) - int(h[0] < t[0])
+            ex[1] += int(h[1] > t[1]) - int(h[1] < t[1])
+    return ex
+
+k = 0
+for x in list_moves_H:
+    moving_normal(x, placeh)
+    place1 = maj(placeh, place1)
+    if place1 not in all_moves:
+        all_moves.append(place1)
+print(len(all_moves))
+
+# Part 2 :
+
+
+with open("input.txt", "r") as f:
+    l = list(map(lambda x: (x[0], int(x[2:])), f.readlines()))
+
+placeh = [0, 0]
+place1 = [0, 0]
+place2 = [0, 0]
+place3 = [0, 0]
+place4 = [0, 0]
+place5 = [0, 0]
+place6 = [0, 0]
+place7 = [0, 0]
+place8 = [0, 0]
+place9 = [0, 0]
+
+all_moves = [[0, 0]]
+
+
+def refactor(l):
+    m = []
+    for x in l:
+        for _ in range(x[1]):
+            m.append(x[0])
+    return m
+
+list_moves_H = refactor(l)
+
+
+def moving_normal(move, dot):
+    dot[1] += int(move == "U") - int(move == "D")
+    dot[0] += int(move == "R") - int(move == "L")
+
+
+def test(h, t):
+    return h[0] - 1 <= t[0] <= h[0] + 1 and h[1] - 1 <= t[1] <= h[1] + 1
+
+
+def maj(h, t):
+    ex = t[:]
+    if not test(h, t):
+        if h[0] == t[0]:
+            if h[1] > t[1]:
+                ex[1] += 1
+            else:
+                ex[1] -= 1
+        elif h[1] == t[1]:
+            if h[0] > t[0]:
+                ex[0] += 1
+            else:
+                ex[0] -= 1
+        else:
+            ex[0] += int(h[0] > t[0]) - int(h[0] < t[0])
+            ex[1] += int(h[1] > t[1]) - int(h[1] < t[1])
+    return ex
+
+k = 0
+for x in list_moves_H:
+    moving_normal(x, placeh)
+    place1 = maj(placeh, place1)
+    place2 = maj(place1, place2)
+    place3 = maj(place2, place3)
+    place4 = maj(place3, place4)
+    place5 = maj(place4, place5)
+    place6 = maj(place5, place6)
+    place7 = maj(place6, place7)
+    place8 = maj(place7, place8)
+    place9 = maj(place8, place9)
+    if place9 not in all_moves:
+        all_moves.append(place9)
+print(len(all_moves))

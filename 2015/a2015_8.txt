@@ -1,0 +1,15 @@
+# Part 1:
+
+# Part 2:
+
+def refactor(s):
+    return s.rstrip()
+s = 0
+with open("input.txt", "r") as f:
+    l = list(map(refactor, f.readlines()))
+    for string in l:
+        big, small = 2, len(string)
+        for x in string:
+            big += 2*int(x in ["\\", "\""]) + int(x not in ["\\", "\""])
+        s += big - small
+print(s)

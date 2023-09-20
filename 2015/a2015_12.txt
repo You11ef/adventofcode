@@ -1,0 +1,35 @@
+# Part 1 :
+
+
+with open('input.txt', 'r') as f:
+    s = f.readlines()[0]
+sum = 0
+k = 0
+numbers = "0123456789"
+load = ""
+while k < len(s):
+    if s[k] in numbers:
+        load += s[k]
+    elif s[k] == "-":
+        if load == "":
+            load += s[k]
+        else:
+            sum += int(load)
+            load = "-"
+    else:
+        if load != "":
+            if load[0] == "-":
+                sum -= int(load[1:])
+            else:
+                sum += int(load)
+            load = ""
+    k += 1
+if load != "":
+    if load[0] == "-":
+        sum -= int(load[1:])
+    else:
+        sum += int(load)
+print(sum)
+
+
+# Part 2 :

@@ -1,0 +1,27 @@
+# Part 1 :
+
+import itertools
+
+def refactor(string):
+    return string.rstrip().split()
+
+with open("input.txt", "r") as f:
+    l = list(map(refactor, f.readlines()))
+
+def length(path):
+    leng = 0
+    for i in range(len(path)-1):
+        for j in range(len(l)):
+            if (path[i] == l[j][0] and path[i+1] == l[j][2]) or (path[i] == l[j][2] and path[i+1] == l[j][0]):
+                leng += int(l[j][-1])
+                break
+    return leng
+
+cities = list(set(x[0] for x in l) | set(x[2] for x in l))
+permut = list(itertools.permutations(cities))
+print(min(list(map(length, permut))))
+
+
+# Part 2 :
+
+replace the last line with : print(max(list(map(length, permut))))

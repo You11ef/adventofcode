@@ -1,0 +1,28 @@
+# Part 1 :
+
+
+
+test = "3113322113"
+new = ""
+for _ in range(40):
+    k = 1
+    last, repet = test[0], 1
+    while k < len(test):
+        if test[k] == last:
+            repet += 1
+        else:
+            new += f"{repet}{last}"
+            last, repet = test[k], 1
+        k += 1
+    new += f"{repet}{last}"
+    test, new = new, ""
+
+print(len(test))
+
+
+# Part 2 :
+
+
+change the third line with : for _ in range(50):
+
+"takes a lot of time : needs to improve time complexity"

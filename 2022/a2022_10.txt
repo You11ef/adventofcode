@@ -1,0 +1,76 @@
+# Part 1:
+
+def refactor(s):
+    try:
+        return int(s.split()[-1])
+    except ValueError:
+        return ""
+
+with open("input.txt", "r") as f:
+    l = list(map(refactor, f.readlines()))
+
+
+X = 1
+to_see = [20, 60, 100, 140, 180, 220]
+charges = []
+cycle = 0
+for i, x in enumerate(l):
+    try:
+        a = int(x)
+        cycle += 1
+        if cycle in to_see:
+            charges.append(X)
+        cycle += 1
+        if cycle in to_see:
+            charges.append(X)
+        X += a
+    except ValueError:
+        cycle += 1
+        if cycle in to_see:
+            charges.append(X)
+
+print(sum(to_see[i]*charges[i] for i in range(len(charges))))
+
+
+# Part 2:
+
+
+def refactor(s):
+    try:
+        return int(s.split()[-1])
+    except ValueError:
+        return ""
+
+with open("input.txt", "r") as f:
+    l = list(map(refactor, f.readlines()))
+
+
+X = 1
+to_see = [41, 81, 121, 161, 201, 241]
+all = []
+charges = ""
+cycle = 0
+for i, x in enumerate(l):
+    try:
+        a = int(x)
+        cycle += 1
+        if cycle in to_see:
+            all.append(charges)
+            charges = ""
+        charges += "#"*int(X-1<=len(charges)<=X+1)+"."*int(not X-1<=len(charges)<=X+1)
+        cycle += 1
+        if cycle in to_see:
+            all.append(charges)
+            charges = ""
+        charges += "#"*int(X-1<=len(charges)<=X+1)+"."*int(not X-1<=len(charges)<=X+1)
+        X += a
+    except ValueError:
+        cycle += 1
+        if cycle in to_see:
+            all.append(charges)
+            charges = ""
+        charges += "#"*int(X-1<=len(charges)<=X+1)+"."*int(not X-1<=len(charges)<=X+1)
+
+for x in all:
+    print(x)
+print(charges)
